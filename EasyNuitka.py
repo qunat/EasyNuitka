@@ -1,10 +1,12 @@
 # This is a sample Python script.
+import os
 import sys
 from PyQt5.QtCore import Qt
 from PyQt5 import QtWidgets,QtGui
 from PyQt5.QtWidgets import QApplication
-
+import nuitka
 import mainui
+import subprocess
 
 
 class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
@@ -13,6 +15,7 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 		self.setupUi(self)
 		self.pushButton.clicked.connect(self.choose_main_py)
 		self.pushButton_2.clicked.connect(self.set_output_path)
+		self.pushButton_7.clicked.connect(self.excute_command)
 		self.chekbox_clicked_init()
 		self.command_dict={}
 	def choose_main_py(self):
@@ -37,8 +40,9 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			self.lineEdit_3.setEnabled(False)
 			self.lineEdit_4.setEnabled(False)
 			self.checkBox_8.setEnabled(False)
+
 			self.command_dict[self.checkBox]="--follow-imports"
-			print(self.command_dict)
+			#print(self.command_dict)
 		elif not self.checkBox.isChecked():
 			self.lineEdit_3.setEnabled(True)
 			self.lineEdit_4.setEnabled(True)
@@ -48,8 +52,8 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 		if self.checkBox_8.isChecked():
 			self.checkBox.setEnabled(False)
 			self.command_dict[self.checkBox_8] = "--nofollow-imports"
-			print(self.command_dict)
-		elif not self.checkBox.isChecked():
+			#print(self.command_dict)
+		elif not self.checkBox_8.isChecked():
 			self.checkBox.setEnabled(True)
 			self.command_dict[self.checkBox_8] = ""
 		#--module
@@ -65,10 +69,8 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			self.lineEdit_5.setEnabled(False)
 			self.lineEdit_8.setEnabled(False)
 			self.command_dict[self.checkBox_7] = "--module"
-			print(self.command_dict)
+			#print(self.command_dict)
 		elif not self.checkBox_7.isChecked():
-			self.checkBox.setEnabled(True)
-			self.checkBox_8.setEnabled(True)
 			self.checkBox_3.setEnabled(True)
 			self.checkBox_4.setEnabled(True)
 			self.checkBox_9.setEnabled(True)
@@ -77,6 +79,11 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			self.lineEdit_4.setEnabled(True)
 			self.lineEdit_5.setEnabled(True)
 			self.lineEdit_8.setEnabled(True)
+			if self.checkBox.isChecked():
+				self.checkBox_8.setEnabled(False)
+			if self.checkBox_8.isChecked():
+				self.checkBox.setEnabled(False)
+
 			self.command_dict[self.checkBox_7] = ""
 		#--standalone
 		if self.checkBox_3.isChecked():
@@ -101,7 +108,7 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			self.checkBox_10.setEnabled(False)
 			self.command_dict[self.checkBox_2] = "--mingw64"
 		else:
-			self.checkBox_10.setEnabled(False)
+			self.checkBox_10.setEnabled(True)
 			self.command_dict[self.checkBox_2] = ""
 		#--show-memory
 		if self.checkBox_5.isChecked():
@@ -118,7 +125,7 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			self.checkBox_2.setEnabled(False)
 			self.command_dict[self.checkBox_10] = "-msvc64"
 		else:
-			self.checkBox_2.setEnabled(False)
+			self.checkBox_2.setEnabled(True)
 			self.command_dict[self.checkBox_10] = ""
 		#--include-plugin-pyqt5
 		if self.checkBox_9.isChecked():
@@ -130,22 +137,14 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			self.command_dict[self.checkBox_17] = "--include-plugin-numpy"
 		else:
 			self.command_dict[self.checkBox_17] = ""
+		print(self.command_dict.values())
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	def excute_command(self):
+		try:
+			os.system('python -m nuitka EasyNuitka.py')
+		except Exception as e:
+			print(e)
 
 	def chekbox_clicked_init(self):
 		self.package_method=[]
