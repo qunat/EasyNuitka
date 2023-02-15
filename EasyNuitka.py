@@ -126,7 +126,7 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 		#--mingw64
 		if self.checkBox_2.isChecked():
 			self.checkBox_10.setEnabled(False)
-			self.command_dict[self.checkBox_2] = "--mingw64"
+			self.command_dict[self.checkBox_2] = ""
 		else:
 			self.checkBox_10.setEnabled(True)
 			self.command_dict[self.checkBox_2] = ""
