@@ -282,7 +282,7 @@ class Ui_MainWindow(object):
         self.checkBox_20.setText(_translate("MainWindow", "--include-plugin-torch"))
         self.groupBox_2.setTitle(_translate("MainWindow", "Parameter Setting"))
         self.label_3.setText(_translate("MainWindow", "--nofollow-import-to"))
-        self.lineEdit_3.setText(_translate("MainWindow", "input you want --nofollow-import-to"))
+        self.lineEdit_3.setText(_translate("MainWindow", "Enter you want --nofollow-import-to"))
         self.pushButton_3.setText(_translate("MainWindow", "Add"))
         self.pushButton_10.setText(_translate("MainWindow", "Remove"))
         self.label_5.setText(_translate("MainWindow", "--include-package"))

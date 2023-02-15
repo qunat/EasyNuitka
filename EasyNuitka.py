@@ -20,17 +20,19 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 		self.pushButton.clicked.connect(self.choose_main_py)
 		self.pushButton_2.clicked.connect(self.set_output_path)
 		self.pushButton_7.clicked.connect(self.Multithreading_command)
-		self.pushButton_4.clicked.connect(self.nofollow_import_to)
-		self.pushButton_12.clicked.connect(self.nofollow_import_to_remove)
+		self.pushButton_4.clicked.connect(self.follow_import_to)
+		self.pushButton_12.clicked.connect(self.follow_import_to_remove)
 		self.pushButton_20.clicked.connect(self.set_icon)
 		self.pushButton_19.clicked.connect(self.remove_icon)
+		self.pushButton_9.clicked.connect(self.quit)
 		self.chekbox_clicked_init()
 		self.command_dict={}
 		self.command_str=None
 		self.main_name=None
 		self.outputpath="./"
-		self.nofollow_import_to_document_str=""
+		self.follow_import_to_document_str=""
 		self.iconname=""
+		self.iconpath=""
 
 	def choose_main_py(self):
 		try:
@@ -233,12 +235,14 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 				if self.command_dict[command]=="":
 					continue
 				self.command_str+=self.command_dict[command]+" "
-
+			if self.follow_import_to_document_str!="":
+				self.command_str += "--follow-import-to=" + self.follow_import_to_document_str[0:-2] + " "
 			self.command_str+="--output-dir="+self.outputpath+" "
-			self.command_str+="--windows-icon-from-ico="+self.iocnname+" "
+			if self.iconname!="":
+				self.command_str+="--windows-icon-from-ico="+self.iocnname+" "
 			self.command_str+=self.filename
 
-			print(self.command_str)
+			#print(self.command_str)
 			os.chdir(self.filenpath)
 			os.system(self.command_str)
 
@@ -267,16 +271,16 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			except:
 				pass
 
-	def nofollow_import_to(self):
+	def follow_import_to(self):
 		try:
 			directory = QtWidgets.QFileDialog.getExistingDirectory(self, "getExistingDirectory", "./")
-			self.nofollow_import_to_document = directory.split("/")[-1]
-			self.nofollow_import_to_document_str+=self.nofollow_import_to_document+","
-			self.lineEdit_4.setText(self.nofollow_import_to_document_str)
+			self.follow_import_to_document = directory.split("/")[-1]
+			self.follow_import_to_document_str+=self.follow_import_to_document+","
+			self.lineEdit_4.setText(self.follow_import_to_document_str)
 		except Exception as e:
 			print(e)
 			pass
-	def nofollow_import_to_remove(self):
+	def follow_import_to_remove(self):
 		try:
 			self.lineEdit_4.setText("")
 		except Exception as e:
@@ -304,9 +308,16 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 	def remove_icon(self):
 		self.lineEdit_6.setText("")
 
-
-
-
+	def include_data_files(self):
+		try:
+			file = QtWidgets.QFileDialog.getOpenFileName(self,
+														 "getOpenFileName", "./",
+														 "All Files (*);;Text Files (*)")
+			self.include_data_files=file[0]
+		except Exception as e:
+			pass
+	def quit(self):
+		sys.exit()
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
 	app = QtWidgets.QApplication(sys.argv)

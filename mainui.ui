@@ -230,7 +230,7 @@
       </font>
      </property>
      <property name="text">
-      <string>input you want --nofollow-import-to</string>
+      <string>Enter you want --nofollow-import-to</string>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_3">
