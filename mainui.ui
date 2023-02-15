@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>774</width>
-    <height>617</height>
+    <height>774</height>
    </rect>
   </property>
   <property name="font">
@@ -26,7 +26,7 @@
       <x>20</x>
       <y>90</y>
       <width>731</width>
-      <height>151</height>
+      <height>141</height>
      </rect>
     </property>
     <property name="title">
@@ -136,32 +136,6 @@
       <string>--nofollow-imports</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_17">
-     <property name="geometry">
-      <rect>
-       <x>490</x>
-       <y>70</y>
-       <width>211</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>--include-plugin-numpy</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="checkBox_9">
-     <property name="geometry">
-      <rect>
-       <x>490</x>
-       <y>40</y>
-       <width>221</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>--include-plugin-pyqt5</string>
-     </property>
-    </widget>
     <widget class="QCheckBox" name="checkBox_10">
      <property name="geometry">
       <rect>
@@ -172,7 +146,46 @@
       </rect>
      </property>
      <property name="text">
-      <string>-msvc64</string>
+      <string>--msvc64</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_9">
+     <property name="geometry">
+      <rect>
+       <x>500</x>
+       <y>40</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>--include-plugin-pyqt5</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_17">
+     <property name="geometry">
+      <rect>
+       <x>500</x>
+       <y>70</y>
+       <width>211</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>--include-plugin-numpy</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_20">
+     <property name="geometry">
+      <rect>
+       <x>500</x>
+       <y>100</y>
+       <width>211</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>--include-plugin-torch</string>
      </property>
     </widget>
    </widget>
@@ -180,7 +193,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>250</y>
+      <y>410</y>
       <width>731</width>
       <height>241</height>
      </rect>
@@ -206,15 +219,24 @@
       <rect>
        <x>200</x>
        <y>30</y>
-       <width>161</width>
+       <width>291</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>input you want --nofollow-import-to</string>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_3">
      <property name="geometry">
       <rect>
-       <x>380</x>
+       <x>510</x>
        <y>30</y>
        <width>75</width>
        <height>23</height>
@@ -227,7 +249,7 @@
     <widget class="QPushButton" name="pushButton_10">
      <property name="geometry">
       <rect>
-       <x>470</x>
+       <x>620</x>
        <y>30</y>
        <width>75</width>
        <height>23</height>
@@ -255,15 +277,21 @@
       <rect>
        <x>200</x>
        <y>60</y>
-       <width>161</width>
+       <width>291</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>9</pointsize>
+      </font>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_4">
      <property name="geometry">
       <rect>
-       <x>380</x>
+       <x>510</x>
        <y>60</y>
        <width>75</width>
        <height>23</height>
@@ -276,7 +304,7 @@
     <widget class="QPushButton" name="pushButton_12">
      <property name="geometry">
       <rect>
-       <x>470</x>
+       <x>620</x>
        <y>60</y>
        <width>75</width>
        <height>23</height>
@@ -304,15 +332,21 @@
       <rect>
        <x>200</x>
        <y>90</y>
-       <width>161</width>
+       <width>291</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>9</pointsize>
+      </font>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_5">
      <property name="geometry">
       <rect>
-       <x>380</x>
+       <x>510</x>
        <y>90</y>
        <width>75</width>
        <height>23</height>
@@ -325,7 +359,7 @@
     <widget class="QPushButton" name="pushButton_14">
      <property name="geometry">
       <rect>
-       <x>470</x>
+       <x>620</x>
        <y>90</y>
        <width>75</width>
        <height>23</height>
@@ -333,16 +367,6 @@
      </property>
      <property name="text">
       <string>Remove</string>
-     </property>
-    </widget>
-    <widget class="QTextBrowser" name="textBrowser">
-     <property name="geometry">
-      <rect>
-       <x>550</x>
-       <y>20</y>
-       <width>171</width>
-       <height>211</height>
-      </rect>
      </property>
     </widget>
     <widget class="QLabel" name="label_7">
@@ -363,15 +387,21 @@
       <rect>
        <x>200</x>
        <y>120</y>
-       <width>161</width>
+       <width>291</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>9</pointsize>
+      </font>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_15">
      <property name="geometry">
       <rect>
-       <x>380</x>
+       <x>510</x>
        <y>120</y>
        <width>75</width>
        <height>23</height>
@@ -384,7 +414,7 @@
     <widget class="QPushButton" name="pushButton_16">
      <property name="geometry">
       <rect>
-       <x>470</x>
+       <x>620</x>
        <y>120</y>
        <width>75</width>
        <height>23</height>
@@ -412,15 +442,21 @@
       <rect>
        <x>200</x>
        <y>150</y>
-       <width>161</width>
+       <width>291</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>9</pointsize>
+      </font>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_17">
      <property name="geometry">
       <rect>
-       <x>470</x>
+       <x>620</x>
        <y>150</y>
        <width>75</width>
        <height>23</height>
@@ -433,7 +469,7 @@
     <widget class="QPushButton" name="pushButton_18">
      <property name="geometry">
       <rect>
-       <x>380</x>
+       <x>510</x>
        <y>150</y>
        <width>75</width>
        <height>23</height>
@@ -461,15 +497,21 @@
       <rect>
        <x>200</x>
        <y>180</y>
-       <width>161</width>
+       <width>291</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>9</pointsize>
+      </font>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_19">
      <property name="geometry">
       <rect>
-       <x>470</x>
+       <x>620</x>
        <y>180</y>
        <width>75</width>
        <height>23</height>
@@ -482,7 +524,7 @@
     <widget class="QPushButton" name="pushButton_20">
      <property name="geometry">
       <rect>
-       <x>380</x>
+       <x>510</x>
        <y>180</y>
        <width>75</width>
        <height>23</height>
@@ -508,7 +550,7 @@
     <widget class="QRadioButton" name="radioButton_2">
      <property name="geometry">
       <rect>
-       <x>310</x>
+       <x>360</x>
        <y>210</y>
        <width>101</width>
        <height>17</height>
@@ -523,7 +565,7 @@
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>510</y>
+      <y>680</y>
       <width>131</width>
       <height>31</height>
      </rect>
@@ -536,7 +578,7 @@
     <property name="geometry">
      <rect>
       <x>340</x>
-      <y>510</y>
+      <y>680</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -549,7 +591,7 @@
     <property name="geometry">
      <rect>
       <x>500</x>
-      <y>510</y>
+      <y>680</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -615,6 +657,162 @@
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>240</y>
+      <width>731</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>other plugin</string>
+    </property>
+    <widget class="QCheckBox" name="checkBox_11">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>231</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>--include-plugin-matplotlib</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_13">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>30</y>
+       <width>201</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>--include-plugin-pyqt6</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_15">
+     <property name="geometry">
+      <rect>
+       <x>500</x>
+       <y>30</y>
+       <width>211</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>--include-plugin-pyside2</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_12">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>60</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>--include-plugin-pyside6</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_18">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>60</y>
+       <width>201</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>--include-plugin-no-qt5</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_19">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>90</y>
+       <width>231</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>--include-plugin-tensorflow</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_22">
+     <property name="geometry">
+      <rect>
+       <x>500</x>
+       <y>60</y>
+       <width>201</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>--include-plugin-upx</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_23">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>120</y>
+       <width>201</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>--include-plugin-trio</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_24">
+     <property name="geometry">
+      <rect>
+       <x>500</x>
+       <y>90</y>
+       <width>211</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>--include-plugin-tk-inter</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_25">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>90</y>
+       <width>241</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>--include-plugin-pywebview</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_14">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>120</y>
+       <width>281</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>--include-plugin-multiprocessing</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
