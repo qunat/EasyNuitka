@@ -5,7 +5,8 @@ import threading
 
 from PyQt5.QtCore import Qt
 from PyQt5 import QtWidgets,QtGui
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QApplication, QStyleFactory
 import nuitka
 import mainui
 import subprocess
@@ -17,6 +18,7 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 		super(MainGui, self).__init__(parent)
 		self.setupUi(self)
 		self.setWindowTitle( "EasyNuitka")
+		self.setWindowIcon(QIcon("./icon/Nuitka.png"))
 		self.pushButton.clicked.connect(self.choose_main_py)
 		self.pushButton_2.clicked.connect(self.set_output_path)
 		self.pushButton_7.clicked.connect(self.Multithreading_command)
@@ -31,9 +33,9 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 		self.main_name=None
 		self.outputpath="./"
 		self.follow_import_to_document_str=""
-		self.iconname=""
+		self.iconname=None
 		self.iconpath=""
-
+		self.statusbar.showMessage("The software runs normally")
 	def choose_main_py(self):
 		try:
 			file = QtWidgets.QFileDialog.getOpenFileName(self,
@@ -45,16 +47,18 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			self.filename=self.filenpath.split("/")[-1]
 			self.filenpath=self.filenpath.replace(self.filename,"")
 			self.dish=self.filenpath[0:2]
-
+			self.statusbar.showMessage("File selected successfully")
 		except Exception as e:
+			self.statusbar.showMessage("File selection failed")
 			print(e)
 	def set_output_path(self):
 		try:
 			directory = QtWidgets.QFileDialog.getExistingDirectory(self, "getExistingDirectory", "./")
 			self.outputpath=directory
 			self.lineEdit_2.setText(directory)
-
+			self.statusbar.showMessage("Output directory set successfully")
 		except Exception as e:
+			self.statusbar.showMessage("Output directory setting failed")
 			pass
 	def get_package_method(self):
 		#--follow-imports
@@ -224,7 +228,7 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			self.command_dict[self.radioButton] = "--windows-disable-console"
 		if self.radioButton_2.isChecked():
 			self.command_dict[self.radioButton_2] = ""
-
+		self.statusbar.showMessage("Selection succeeded")
 	def Multithreading_command(self):
 		t=threading.Thread(target=self.excute_command,args=())
 		t.start()
@@ -239,14 +243,15 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 				self.command_str += "--follow-import-to=" + self.follow_import_to_document_str[0:-2] + " "
 			self.command_str+="--output-dir="+self.outputpath+" "
 			if self.iconname!="":
-				self.command_str+="--windows-icon-from-ico="+self.iocnname+" "
+				self.command_str+="--windows-icon-from-ico="+self.iconname+" "
 			self.command_str+=self.filename
 
 			#print(self.command_str)
 			os.chdir(self.filenpath)
 			os.system(self.command_str)
-
+			self.statusbar.showMessage("Please wait to start packaging......")
 		except Exception as e:
+			self.statusbar.showMessage("Packaging failed. Please check the console information!")
 			print(e)
 
 	def chekbox_clicked_init(self):
@@ -295,12 +300,9 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			self.lineEdit_6.setText(self.iconpath)
 			src=self.iconpath
 			dist=self.filenpath+src.split("/")[-1]
-			try:
+			if not os.path.exists(dist):
 				shutil.copyfile(src,dist)
-			except:
-				pass
-			finally:
-				self.iocnname = src.split("/")[-1]
+			self.iconname = src.split("/")[-1]
 
 
 		except Exception as e:
@@ -321,6 +323,7 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
 	app = QtWidgets.QApplication(sys.argv)
+	QApplication.setStyle(QStyleFactory.create('Fusion'))
 	QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
 	win = MainGui()
 	win.show()
