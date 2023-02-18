@@ -28,6 +28,7 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 		self.pushButton_9.clicked.connect(self.quit)
 		self.pushButton_3.clicked.connect(self.nofollow_import_to)
 		self.pushButton_10.clicked.connect(self.nofollow_import_to_remove)
+		self.pushButton_17.clicked.connect(self.include_package_remove)
 		self.chekbox_clicked_init()
 		self.command_dict={}
 		self.command_str=None
@@ -37,19 +38,30 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 		self.nofollow_import_to_document_str=""
 		self.iconname=None
 		self.iconpath=""
+		self.compile_module_path=None
 		self.statusbar.showMessage("The software runs normally")
 	def choose_main_py(self):
 		try:
-			file = QtWidgets.QFileDialog.getOpenFileName(self,
-														 "getOpenFileName", "./",
-														 "All Files (*.py);;Text Files (*.py)")
-			self.filenpath=file[0]
-			self.lineEdit.setText(file[0])
-			self.main_name=self.lineEdit.setText(file[0])
-			self.filename=self.filenpath.split("/")[-1]
-			self.filenpath=self.filenpath.replace(self.filename,"")
-			self.dish=self.filenpath[0:2]
-			self.statusbar.showMessage("File selected successfully")
+			if not self.checkBox_7.isChecked():
+				file = QtWidgets.QFileDialog.getOpenFileName(self,
+															 "choose main.py", "./",
+															 "All Files (*.py);;Text Files (*.py)")
+				self.filenpath = file[0]
+				self.lineEdit.setText(file[0])
+				self.main_name = self.lineEdit.setText(file[0])
+				self.filename = self.filenpath.split("/")[-1]
+				self.filenpath = self.filenpath.replace(self.filename, "")
+				self.dish = self.filenpath[0:2]
+				self.statusbar.showMessage("File selected successfully")
+
+			else :
+				directory = QtWidgets.QFileDialog.getExistingDirectory(self, "choose compile module dir", "./")
+				self.compile_module_path=directory
+				self.lineEdit.setText(directory)
+				self.lineEdit_9.setText(self.compile_module_path.split("/")[-1])
+				self.statusbar.showMessage("Output directory set successfully")
+
+
 		except Exception as e:
 			self.statusbar.showMessage("File selection failed")
 			print(e)
@@ -111,6 +123,8 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			self.lineEdit_9.setEnabled(False)
 			self.radioButton.setEnabled(True)
 			self.radioButton_2.setEnabled(True)
+			self.checkBox_3.setEnabled(True)
+			self.checkBox_4.setEnabled(True)
 			if self.checkBox.isChecked():
 				self.checkBox_8.setEnabled(False)
 			if self.checkBox_8.isChecked():
@@ -122,19 +136,21 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			self.checkBox_4.setEnabled(False)
 			self.checkBox_7.setEnabled(False)
 			self.command_dict[self.checkBox_3] = "--standalone"
-		else:
-			self.checkBox_4.setEnabled(True)
+		elif not self.checkBox_3.isChecked() and not self.checkBox_7.isChecked():
 			self.checkBox_7.setEnabled(True)
+			self.checkBox_4.setEnabled(True)
 			self.command_dict[self.checkBox_3] = ""
 		#--onefile
 		if self.checkBox_4.isChecked():
 			self.checkBox_3.setEnabled(False)
 			self.checkBox_7.setEnabled(False)
 			self.command_dict[self.checkBox_4] = "--onefile"
-		else:
+		elif not self.checkBox_4.isChecked() and not self.checkBox_7.isChecked() :
 			self.checkBox_3.setEnabled(True)
-			self.checkBox_7.setEnabled(True)
+			if not self.checkBox_3.isChecked():
+				self.checkBox_7.setEnabled(True)
 			self.command_dict[self.checkBox_4] = ""
+
 		#--mingw64
 		if self.checkBox_2.isChecked():
 			self.checkBox_10.setEnabled(False)
@@ -234,16 +250,24 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			self.command_dict[self.radioButton] = "--windows-disable-console"
 		if self.radioButton_2.isChecked():
 			self.command_dict[self.radioButton_2] = ""
+		#Default Enabled
+		self.lineEdit_5.setEnabled(False)
+		self.lineEdit_8.setEnabled(False)
+
 		self.statusbar.showMessage("Selection succeeded")
 	def Multithreading_command(self):
 		t=threading.Thread(target=self.excute_command,args=())
 		t.start()
+		self.statusbar.showMessage("packaging is finishing")
 	def excute_command(self):
 		try:
 			self.command_str="python -m nuitka "
 			for command in self.command_dict.keys():
 				if self.command_dict[command]=="":
 					continue
+				if self.command_dict[command]=="--module":
+					self.command_dict[command]="--module "+self.compile_module_path.split("/")[-1]+" "+"--include-package="+\
+											   self.lineEdit_9.text()
 				self.command_str+=self.command_dict[command]+" "
 			if self.follow_import_to_document_str!="":
 				self.command_str += "--follow-import-to=" + self.follow_import_to_document_str[0:len(self.follow_import_to_document_str)-1] + " "
@@ -252,10 +276,15 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			self.command_str+="--output-dir="+self.outputpath+" "
 			if self.iconname!=None:
 				self.command_str+="--windows-icon-from-ico="+self.iconname+" "
-			self.command_str+=self.filename
+			if not self.checkBox_7.isChecked():
+				self.command_str+=self.filename
 
 			print(self.command_str)
-			os.chdir(self.filenpath)
+			if not self.checkBox_7.isChecked():
+				os.chdir(self.filenpath)
+			else:
+				os.chdir(self.compile_module_path)
+				os.chdir("../")
 			os.system(self.command_str)
 			self.statusbar.showMessage("Please wait to start packaging......")
 		except Exception as e:
@@ -310,16 +339,18 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 		pass
 	def set_icon(self):
 		try:
-			file = QtWidgets.QFileDialog.getOpenFileName(self,
-														 "getOpenFileName", "./",
-														 "All Files (*);;Text Files (*)")
-			self.iconpath=file[0]
-			self.lineEdit_6.setText(self.iconpath)
-			src=self.iconpath
-			dist=self.filenpath+src.split("/")[-1]
-			if not os.path.exists(dist):
-				shutil.copyfile(src,dist)
-			self.iconname = src.split("/")[-1]
+			if not self.checkBox_7.isChecked():
+				file = QtWidgets.QFileDialog.getOpenFileName(self,
+															 "getOpenFileName", "./",
+															 "All Files (*);;Text Files (*)")
+				self.iconpath = file[0]
+				self.lineEdit_6.setText(self.iconpath)
+				src = self.iconpath
+				dist = self.filenpath + src.split("/")[-1]
+				if not os.path.exists(dist):
+					shutil.copyfile(src, dist)
+				self.iconname = src.split("/")[-1]
+
 		except Exception as e:
 			print(e)
 	def remove_icon(self):
@@ -334,6 +365,9 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			self.include_data_files=file[0]
 		except Exception as e:
 			pass
+
+	def include_package_remove(self):
+		self.lineEdit_9.setText("Default to the entire module")
 	def quit(self):
 		sys.exit()
 # Press the green button in the gutter to run the script.

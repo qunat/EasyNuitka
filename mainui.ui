@@ -331,6 +331,9 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit_5">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>200</x>
@@ -386,6 +389,9 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit_8">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>200</x>
@@ -456,7 +462,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Enter module/package ;Separate them with commas</string>
+      <string>Default to the entire module</string>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_17">
@@ -622,7 +628,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Manin File</string>
+        <string>Manin File/Module</string>
        </property>
       </widget>
      </item>
@@ -651,7 +657,7 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>OutPut Path</string>
+        <string>OutPut Path          </string>
        </property>
       </widget>
      </item>

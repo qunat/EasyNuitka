@@ -219,7 +219,7 @@
       <rect>
        <x>200</x>
        <y>30</y>
-       <width>291</width>
+       <width>331</width>
        <height>21</height>
       </rect>
      </property>
@@ -230,13 +230,13 @@
       </font>
      </property>
      <property name="text">
-      <string>input you want --nofollow-import-to</string>
+      <string>Enter module/package ;Separate them with commas</string>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_3">
      <property name="geometry">
       <rect>
-       <x>510</x>
+       <x>550</x>
        <y>30</y>
        <width>75</width>
        <height>23</height>
@@ -249,7 +249,7 @@
     <widget class="QPushButton" name="pushButton_10">
      <property name="geometry">
       <rect>
-       <x>620</x>
+       <x>640</x>
        <y>30</y>
        <width>75</width>
        <height>23</height>
@@ -277,7 +277,7 @@
       <rect>
        <x>200</x>
        <y>60</y>
-       <width>291</width>
+       <width>331</width>
        <height>21</height>
       </rect>
      </property>
@@ -287,11 +287,14 @@
        <pointsize>9</pointsize>
       </font>
      </property>
+     <property name="text">
+      <string>Select the folder you want to compile</string>
+     </property>
     </widget>
     <widget class="QPushButton" name="pushButton_4">
      <property name="geometry">
       <rect>
-       <x>510</x>
+       <x>550</x>
        <y>60</y>
        <width>75</width>
        <height>23</height>
@@ -304,7 +307,7 @@
     <widget class="QPushButton" name="pushButton_12">
      <property name="geometry">
       <rect>
-       <x>620</x>
+       <x>640</x>
        <y>60</y>
        <width>75</width>
        <height>23</height>
@@ -328,11 +331,14 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit_5">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>200</x>
        <y>90</y>
-       <width>291</width>
+       <width>331</width>
        <height>21</height>
       </rect>
      </property>
@@ -346,7 +352,7 @@
     <widget class="QPushButton" name="pushButton_5">
      <property name="geometry">
       <rect>
-       <x>510</x>
+       <x>550</x>
        <y>90</y>
        <width>75</width>
        <height>23</height>
@@ -359,7 +365,7 @@
     <widget class="QPushButton" name="pushButton_14">
      <property name="geometry">
       <rect>
-       <x>620</x>
+       <x>640</x>
        <y>90</y>
        <width>75</width>
        <height>23</height>
@@ -383,11 +389,14 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit_8">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>200</x>
        <y>120</y>
-       <width>291</width>
+       <width>331</width>
        <height>21</height>
       </rect>
      </property>
@@ -401,7 +410,7 @@
     <widget class="QPushButton" name="pushButton_15">
      <property name="geometry">
       <rect>
-       <x>510</x>
+       <x>550</x>
        <y>120</y>
        <width>75</width>
        <height>23</height>
@@ -414,7 +423,7 @@
     <widget class="QPushButton" name="pushButton_16">
      <property name="geometry">
       <rect>
-       <x>620</x>
+       <x>640</x>
        <y>120</y>
        <width>75</width>
        <height>23</height>
@@ -442,7 +451,7 @@
       <rect>
        <x>200</x>
        <y>150</y>
-       <width>291</width>
+       <width>331</width>
        <height>21</height>
       </rect>
      </property>
@@ -452,11 +461,14 @@
        <pointsize>9</pointsize>
       </font>
      </property>
+     <property name="text">
+      <string>Default to the entire module</string>
+     </property>
     </widget>
     <widget class="QPushButton" name="pushButton_17">
      <property name="geometry">
       <rect>
-       <x>620</x>
+       <x>640</x>
        <y>150</y>
        <width>75</width>
        <height>23</height>
@@ -469,7 +481,7 @@
     <widget class="QPushButton" name="pushButton_18">
      <property name="geometry">
       <rect>
-       <x>510</x>
+       <x>550</x>
        <y>150</y>
        <width>75</width>
        <height>23</height>
@@ -497,7 +509,7 @@
       <rect>
        <x>200</x>
        <y>180</y>
-       <width>291</width>
+       <width>331</width>
        <height>21</height>
       </rect>
      </property>
@@ -507,11 +519,14 @@
        <pointsize>9</pointsize>
       </font>
      </property>
+     <property name="text">
+      <string>Select  icon</string>
+     </property>
     </widget>
     <widget class="QPushButton" name="pushButton_19">
      <property name="geometry">
       <rect>
-       <x>620</x>
+       <x>640</x>
        <y>180</y>
        <width>75</width>
        <height>23</height>
@@ -524,7 +539,7 @@
     <widget class="QPushButton" name="pushButton_20">
      <property name="geometry">
       <rect>
-       <x>510</x>
+       <x>550</x>
        <y>180</y>
        <width>75</width>
        <height>23</height>
@@ -613,7 +628,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Manin File</string>
+        <string>Manin File/Module</string>
        </property>
       </widget>
      </item>
@@ -642,7 +657,7 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>OutPut Path</string>
+        <string>OutPut Path          </string>
        </property>
       </widget>
      </item>
@@ -849,7 +864,14 @@
    <addaction name="menu_3"/>
    <addaction name="menu_4"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>8</pointsize>
+    </font>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
