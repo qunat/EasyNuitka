@@ -219,7 +219,7 @@
       <rect>
        <x>200</x>
        <y>30</y>
-       <width>291</width>
+       <width>331</width>
        <height>21</height>
       </rect>
      </property>
@@ -230,13 +230,13 @@
       </font>
      </property>
      <property name="text">
-      <string>Enter you want --nofollow-import-to</string>
+      <string>Enter module/package ;Separate them with commas</string>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_3">
      <property name="geometry">
       <rect>
-       <x>510</x>
+       <x>550</x>
        <y>30</y>
        <width>75</width>
        <height>23</height>
@@ -249,7 +249,7 @@
     <widget class="QPushButton" name="pushButton_10">
      <property name="geometry">
       <rect>
-       <x>620</x>
+       <x>640</x>
        <y>30</y>
        <width>75</width>
        <height>23</height>
@@ -277,7 +277,7 @@
       <rect>
        <x>200</x>
        <y>60</y>
-       <width>291</width>
+       <width>331</width>
        <height>21</height>
       </rect>
      </property>
@@ -287,11 +287,14 @@
        <pointsize>9</pointsize>
       </font>
      </property>
+     <property name="text">
+      <string>Select the folder you want to compile</string>
+     </property>
     </widget>
     <widget class="QPushButton" name="pushButton_4">
      <property name="geometry">
       <rect>
-       <x>510</x>
+       <x>550</x>
        <y>60</y>
        <width>75</width>
        <height>23</height>
@@ -304,7 +307,7 @@
     <widget class="QPushButton" name="pushButton_12">
      <property name="geometry">
       <rect>
-       <x>620</x>
+       <x>640</x>
        <y>60</y>
        <width>75</width>
        <height>23</height>
@@ -332,7 +335,7 @@
       <rect>
        <x>200</x>
        <y>90</y>
-       <width>291</width>
+       <width>331</width>
        <height>21</height>
       </rect>
      </property>
@@ -346,7 +349,7 @@
     <widget class="QPushButton" name="pushButton_5">
      <property name="geometry">
       <rect>
-       <x>510</x>
+       <x>550</x>
        <y>90</y>
        <width>75</width>
        <height>23</height>
@@ -359,7 +362,7 @@
     <widget class="QPushButton" name="pushButton_14">
      <property name="geometry">
       <rect>
-       <x>620</x>
+       <x>640</x>
        <y>90</y>
        <width>75</width>
        <height>23</height>
@@ -387,7 +390,7 @@
       <rect>
        <x>200</x>
        <y>120</y>
-       <width>291</width>
+       <width>331</width>
        <height>21</height>
       </rect>
      </property>
@@ -401,7 +404,7 @@
     <widget class="QPushButton" name="pushButton_15">
      <property name="geometry">
       <rect>
-       <x>510</x>
+       <x>550</x>
        <y>120</y>
        <width>75</width>
        <height>23</height>
@@ -414,7 +417,7 @@
     <widget class="QPushButton" name="pushButton_16">
      <property name="geometry">
       <rect>
-       <x>620</x>
+       <x>640</x>
        <y>120</y>
        <width>75</width>
        <height>23</height>
@@ -442,7 +445,7 @@
       <rect>
        <x>200</x>
        <y>150</y>
-       <width>291</width>
+       <width>331</width>
        <height>21</height>
       </rect>
      </property>
@@ -452,11 +455,14 @@
        <pointsize>9</pointsize>
       </font>
      </property>
+     <property name="text">
+      <string>Enter module/package ;Separate them with commas</string>
+     </property>
     </widget>
     <widget class="QPushButton" name="pushButton_17">
      <property name="geometry">
       <rect>
-       <x>620</x>
+       <x>640</x>
        <y>150</y>
        <width>75</width>
        <height>23</height>
@@ -469,7 +475,7 @@
     <widget class="QPushButton" name="pushButton_18">
      <property name="geometry">
       <rect>
-       <x>510</x>
+       <x>550</x>
        <y>150</y>
        <width>75</width>
        <height>23</height>
@@ -497,7 +503,7 @@
       <rect>
        <x>200</x>
        <y>180</y>
-       <width>291</width>
+       <width>331</width>
        <height>21</height>
       </rect>
      </property>
@@ -507,11 +513,14 @@
        <pointsize>9</pointsize>
       </font>
      </property>
+     <property name="text">
+      <string>Select  icon</string>
+     </property>
     </widget>
     <widget class="QPushButton" name="pushButton_19">
      <property name="geometry">
       <rect>
-       <x>620</x>
+       <x>640</x>
        <y>180</y>
        <width>75</width>
        <height>23</height>
@@ -524,7 +533,7 @@
     <widget class="QPushButton" name="pushButton_20">
      <property name="geometry">
       <rect>
-       <x>510</x>
+       <x>550</x>
        <y>180</y>
        <width>75</width>
        <height>23</height>

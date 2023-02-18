@@ -2,7 +2,6 @@
 import os
 import sys
 import threading
-
 from PyQt5.QtCore import Qt
 from PyQt5 import QtWidgets,QtGui
 from PyQt5.QtGui import QIcon
@@ -27,12 +26,15 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 		self.pushButton_20.clicked.connect(self.set_icon)
 		self.pushButton_19.clicked.connect(self.remove_icon)
 		self.pushButton_9.clicked.connect(self.quit)
+		self.pushButton_3.clicked.connect(self.nofollow_import_to)
+		self.pushButton_10.clicked.connect(self.nofollow_import_to_remove)
 		self.chekbox_clicked_init()
 		self.command_dict={}
 		self.command_str=None
 		self.main_name=None
 		self.outputpath="./"
 		self.follow_import_to_document_str=""
+		self.nofollow_import_to_document_str=""
 		self.iconname=None
 		self.iconpath=""
 		self.statusbar.showMessage("The software runs normally")
@@ -88,23 +90,27 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			self.checkBox_8.setEnabled(False)
 			self.checkBox_3.setEnabled(False)
 			self.checkBox_4.setEnabled(False)
-			self.checkBox_9.setEnabled(False)
-			self.checkBox_17.setEnabled(False)
 			self.lineEdit_3.setEnabled(False)
 			self.lineEdit_4.setEnabled(False)
 			self.lineEdit_5.setEnabled(False)
 			self.lineEdit_8.setEnabled(False)
+			self.lineEdit_6.setEnabled(False)
+			self.lineEdit_9.setEnabled(True)
+			self.radioButton.setEnabled(False)
+			self.radioButton_2.setEnabled(False)
 			self.command_dict[self.checkBox_7] = "--module"
 			#print(self.command_dict)
 		elif not self.checkBox_7.isChecked():
 			self.checkBox_3.setEnabled(True)
 			self.checkBox_4.setEnabled(True)
-			self.checkBox_9.setEnabled(True)
-			self.checkBox_17.setEnabled(True)
 			self.lineEdit_3.setEnabled(True)
 			self.lineEdit_4.setEnabled(True)
 			self.lineEdit_5.setEnabled(True)
 			self.lineEdit_8.setEnabled(True)
+			self.lineEdit_6.setEnabled(True)
+			self.lineEdit_9.setEnabled(False)
+			self.radioButton.setEnabled(True)
+			self.radioButton_2.setEnabled(True)
 			if self.checkBox.isChecked():
 				self.checkBox_8.setEnabled(False)
 			if self.checkBox_8.isChecked():
@@ -240,19 +246,21 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 					continue
 				self.command_str+=self.command_dict[command]+" "
 			if self.follow_import_to_document_str!="":
-				self.command_str += "--follow-import-to=" + self.follow_import_to_document_str[0:-2] + " "
+				self.command_str += "--follow-import-to=" + self.follow_import_to_document_str[0:len(self.follow_import_to_document_str)-1] + " "
+			if self.follow_import_to_document_str!="":
+				self.command_str+="--nofollow-import-to="+self.follow_import_to_document_str+" "
 			self.command_str+="--output-dir="+self.outputpath+" "
-			if self.iconname!="":
+			if self.iconname!=None:
 				self.command_str+="--windows-icon-from-ico="+self.iconname+" "
 			self.command_str+=self.filename
 
-			#print(self.command_str)
+			print(self.command_str)
 			os.chdir(self.filenpath)
 			os.system(self.command_str)
 			self.statusbar.showMessage("Please wait to start packaging......")
 		except Exception as e:
-			self.statusbar.showMessage("Packaging failed. Please check the console information!")
-			print(e)
+			self.statusbar.showMessage(e)
+			#print(e)
 
 	def chekbox_clicked_init(self):
 		self.package_method=[]
@@ -275,7 +283,14 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 				check.clicked.connect(self.get_package_method)
 			except:
 				pass
-
+		self.lineEdit_9.setEnabled(False)
+	def nofollow_import_to(self):
+		self.follow_import_to_document_str=self.lineEdit_3.text()
+		self.statusbar.showMessage("add module to nofollow_import_to ")
+	def nofollow_import_to_remove(self):
+		self.lineEdit_3.setText("Enter module/package ;Separate them with commas")
+		self.follow_import_to_document_str=""
+		self.statusbar.showMessage("Removed")
 	def follow_import_to(self):
 		try:
 			directory = QtWidgets.QFileDialog.getExistingDirectory(self, "getExistingDirectory", "./")
@@ -287,10 +302,12 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			pass
 	def follow_import_to_remove(self):
 		try:
-			self.lineEdit_4.setText("")
+			self.lineEdit_4.setText("Select the folder you want to compile")
 		except Exception as e:
-			print(e)
+			self.statusbar.showMessage("Removed")
 			pass
+	def include_data_files(self):
+		pass
 	def set_icon(self):
 		try:
 			file = QtWidgets.QFileDialog.getOpenFileName(self,
@@ -303,12 +320,11 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 			if not os.path.exists(dist):
 				shutil.copyfile(src,dist)
 			self.iconname = src.split("/")[-1]
-
-
 		except Exception as e:
 			print(e)
 	def remove_icon(self):
-		self.lineEdit_6.setText("")
+		self.lineEdit_6.setText("Select  icon")
+		self.statusbar.showMessage("Removed")
 
 	def include_data_files(self):
 		try:
@@ -322,9 +338,9 @@ class MainGui(mainui.Ui_MainWindow,	QtWidgets.QMainWindow):
 		sys.exit()
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+	QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
 	app = QtWidgets.QApplication(sys.argv)
 	QApplication.setStyle(QStyleFactory.create('Fusion'))
-	QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
 	win = MainGui()
 	win.show()
 	sys.exit(app.exec_())
