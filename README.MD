@@ -1,6 +1,6 @@
-####################
+**********
  EasyNuitka User Manual
-####################
+**********
 
 **********
  Overview
@@ -193,7 +193,7 @@ Install EasyNuitka
 --------------
 - ``python -m pip install EasyNuitka``
 
-RUN EasyNuitka
+Run EasyNuitka
 --------------
 - ``python -m EasyNuitka``
 
